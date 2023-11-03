@@ -1,10 +1,21 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { RootNavigator } from './src/navigation/RootNavigator';
+import { COLORS } from './src/constants/colors';
 
 const App = (): JSX.Element => (
-  <View>
-    <Text>App</Text>
-  </View>
+  <SafeAreaProvider>
+    <NavigationContainer>
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={COLORS.transparent}
+        translucent={true}
+      />
+      <RootNavigator />
+    </NavigationContainer>
+  </SafeAreaProvider>
 );
 
 export default App;
