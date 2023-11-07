@@ -19,16 +19,16 @@ export const MapComponent = ({ latitude, longitude, address}: OwnProps) => (
     <MapView
       style={styles.map}
       region={{
-        latitude: latitude,
-        longitude: longitude,
+        latitude,
+        longitude,
         latitudeDelta: 0.05,
         longitudeDelta: 0.05,
       }}
     >
       <Marker
         coordinate={{
-          latitude: latitude,
-          longitude: longitude,
+          latitude,
+          longitude,
         }}
       />
     </MapView>
@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
   mapContainer: {
     alignSelf: 'center',
     marginTop: verticalScale(28),
+    overflow: 'hidden',
+    borderRadius: moderateScale(16),
   },
   mapTitleContainer: {
     position: 'absolute',

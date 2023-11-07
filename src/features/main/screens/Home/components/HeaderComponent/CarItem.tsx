@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Car } from '../../../../../../types/car';
+import { type Car } from '../../../../../../types/car';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../../../utils/styleUtils';
 import { COLORS } from '../../../../../../constants/colors';
 
@@ -8,7 +8,7 @@ type OwnProps = {
   car: Car;
 };
 
-export const CarItem = ({ car }: OwnProps) => (
+const CarItem = ({ car }: OwnProps) => (
   <View style={styles.container}>
     <View style={styles.subscriptionContainer}>
       <Text style={styles.subscription}>
@@ -21,6 +21,8 @@ export const CarItem = ({ car }: OwnProps) => (
     </View>
   </View>
 );
+
+export default memo(CarItem);
 
 const styles = StyleSheet.create({
   container: {

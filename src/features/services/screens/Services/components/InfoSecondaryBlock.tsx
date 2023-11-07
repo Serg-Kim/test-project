@@ -1,64 +1,48 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { DetailsEnum } from '../../../../../navigation/types';
-import { Car } from '../../../../../types/car';
+import { type Car } from '../../../../../types/car';
 import { addSpacesFormatter } from '../../../../../utils/stringUtils';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../../utils/styleUtils';
-import { icons, titles } from '../ServicesScreen';
 import { COLORS } from '../../../../../constants/colors';
+import { CURRENCY_RUB, icons, titles } from '../../../../../constants/common';
 import { fuelCost } from '../../../../../constants/mockData';
+
+type DetailsEnumSecondary = Exclude<
+  DetailsEnum,
+  DetailsEnum.FUEL | DetailsEnum.SERVICE
+>;
 
 type OwnProps = {
   car: Car;
-  blockType: string;
+  blockType: DetailsEnumSecondary;
   navigateToDetails: (key: DetailsEnum) => void;
 };
 
 export const InfoSecondaryBlock = ({ car, blockType, navigateToDetails }: OwnProps) => {
-  const isFine = blockType === DetailsEnum.FINE;
-  const isParking = blockType === DetailsEnum.PARKING;
-
-  const getSubtitle = () => {
-    if (isFine) {
-      return `${car.fineAmount} новых`;
-    }
-
-    if (isParking) {
-      return `№ ${car.parkingNumber}`;
-    }
-
-    return `${car.gasStationDistance / 1000} км`;
+  const subtitles = {
+    [DetailsEnum.FINE]: `${car.fineAmount} новых`,
+    [DetailsEnum.PARKING]: `№ ${car.parkingNumber}`,
+    [DetailsEnum.GAS_STATION]: `${car.gasStationDistance / 1000} км`,
   };
 
-  const getCostDescription = () => {
-    if (isFine) {
-      return 'Всего';
-    }
-
-    if (isParking) {
-      return `${car.parkingHours} ч прошло`;
-    }
-
-    return `1 л ${car.fuelType}`;
+  const costs = {
+    [DetailsEnum.FINE]: `${addSpacesFormatter(
+      car.fineAmount * car.fineCost + '',
+    )} ${CURRENCY_RUB}`,
+    [DetailsEnum.PARKING]: `${addSpacesFormatter(
+      car.parkingHours * car.parkingCostInHour + '',
+    )} ${CURRENCY_RUB}`,
+    [DetailsEnum.GAS_STATION]: `${addSpacesFormatter(
+      fuelCost[car.fuelType] + '',
+    )} ${CURRENCY_RUB}`,
   };
 
-  const getCost = () => {
-    if (isFine) {
-      return `${addSpacesFormatter(car.fineAmount * car.fineCost + '')} \u20BD`;
-    }
-
-    if (isParking) {
-      return `${addSpacesFormatter(
-        car.parkingHours * car.parkingCostInHour + '',
-      )} \u20BD`;
-    }
-
-    return `${addSpacesFormatter(fuelCost[car.fuelType] + '')} \u20BD`;
+  const costDescriptions = {
+    [DetailsEnum.FINE]: 'Всего',
+    [DetailsEnum.PARKING]: `${car.parkingHours} ч прошло`,
+    [DetailsEnum.GAS_STATION]: `1 л ${car.fuelType}`,
   };
-
-  const subtitle = getSubtitle();
-  const cost = getCost();
-  const costDescription = getCostDescription();
 
   const Icon = icons[blockType as DetailsEnum];
 
@@ -74,13 +58,13 @@ export const InfoSecondaryBlock = ({ car, blockType, navigateToDetails }: OwnPro
     >
       <View style={styles.titleContainer}>
         <View>
-          <Text style={styles.title}>{titles[blockType as DetailsEnum]}</Text>
-          <Text style={styles.secondaryText}>{subtitle}</Text>
+          <Text style={styles.title}>{titles[blockType]}</Text>
+          <Text style={styles.secondaryText}>{subtitles[blockType]}</Text>
         </View>
         {Icon}
       </View>
-      <Text style={styles.cost}>{cost}</Text>
-      <Text style={styles.secondaryText}>{costDescription}</Text>
+      <Text style={styles.cost}>{costs[blockType]}</Text>
+      <Text style={styles.secondaryText}>{costDescriptions[blockType]}</Text>
     </TouchableOpacity>
   );
 };

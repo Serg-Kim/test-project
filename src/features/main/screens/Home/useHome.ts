@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Car } from '../../../../types/car';
+import { Alert } from 'react-native';
+import { type Car } from '../../../../types/car';
 import { mockedCars } from '../../../../constants/mockData';
 
 export const useHome = () => {
@@ -29,12 +30,16 @@ export const useHome = () => {
       return;
     }
 
-    const res = await updateCars();
-    if (res) {
-      setCars(res);
+    try {
+      const res = await updateCars();
+      if (res) {
+        setCars(res);
+      }
+    } catch {
+      Alert.alert('Ошибка', 'Не удалось получить данные о машинах');
+    } finally {
+      setRefreshing(false);
     }
-
-    setRefreshing(false);
   };
 
   useEffect(() => {

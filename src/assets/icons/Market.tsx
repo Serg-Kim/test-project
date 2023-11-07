@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import Svg, { Path, SvgProps } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { COLORS } from '../../constants/colors';
 
-interface OwnProps extends SvgProps {
+type OwnProps = {
   stroke?: string;
   fill?: string;
-}
+};
 
 export const MarketIcon = (props: OwnProps): ReactElement => {
   const { stroke = COLORS.white, fill = COLORS.transparent } = props;

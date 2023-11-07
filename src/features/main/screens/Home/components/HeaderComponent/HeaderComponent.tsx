@@ -8,9 +8,9 @@ import {
   ViewToken,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Car } from '../../../../../../types/car';
+import { type Car } from '../../../../../../types/car';
+import CarItem from './CarItem';
 import { Logo } from './Logo';
-import { CarItem } from './CarItem';
 import { Profile } from './Profile';
 import { PageIndicator } from './PageIndicator';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../../../utils/styleUtils';
@@ -49,6 +49,14 @@ export const HeaderComponent = ({
       setCurrentIndexHandler(newIndex);
   }, []);
 
+  const renderRefreshControl = () => (
+    <RefreshControl
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      tintColor={COLORS.lightGray}
+    />
+  );
+
   return (
     <View style={[styles.container, { paddingTop: top }]}>
       <Logo />
@@ -58,16 +66,11 @@ export const HeaderComponent = ({
         keyExtractor={keyExtractor}
         horizontal
         pagingEnabled
+        showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            tintColor={COLORS.lightGray}
-          />
-        }
+        refreshControl={renderRefreshControl()}
         style={styles.list}
       />
       <Profile />

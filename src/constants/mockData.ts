@@ -1,5 +1,5 @@
 import { FuelEnum, ServiceEnum } from '../types/widgets';
-import { Car } from '../types/car';
+import { type Car } from '../types/car';
 
 export const fuelCost = {
   [FuelEnum.AI92]: 42,

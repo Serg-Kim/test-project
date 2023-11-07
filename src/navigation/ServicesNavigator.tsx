@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { StyleSheet, Text,  View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { ServicesNavigatorScreens } from './types';
-import { Car } from '../types/car';
+import { type Car } from '../types/car';
 import { ServicesTabBar } from './components/ServicesTabBar';
 import { ServicesScreen } from '../features/services/screens/Services/ServicesScreen';
 import { verticalScale } from '../utils/styleUtils';

@@ -2,37 +2,19 @@ import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/core';
-import { DetailsEnum, HomeScreenNavigationProp, MainNavigatorScreens } from '../../../../navigation/types';
-import { Car } from '../../../../types/car';
+import {
+  DetailsEnum,
+  MainNavigatorScreens,
+  type HomeScreenNavigationProp,
+} from '../../../../navigation/types';
+import { type Car } from '../../../../types/car';
 import { InfoPrimaryBlock } from './components/InfoPrimaryBlock';
 import { InfoSecondaryBlock } from './components/InfoSecondaryBlock';
 import { MapComponent } from './components/MapComponent';
-import { CCTVIcon } from '../../../../assets/icons/CCTV';
-import { ParkingIcon } from '../../../../assets/icons/Parking';
-import { GasStationFillIcon } from '../../../../assets/icons/GasStationFill';
-import { GasStationIcon } from '../../../../assets/icons/GasStation';
-import { MaintenanceIcon } from '../../../../assets/icons/Maintenance';
 import { horizontalScale, verticalScale } from '../../../../utils/styleUtils';
-import { COLORS } from '../../../../constants/colors';
 
 type OwnProps = {
   car: Car;
-};
-
-export const titles = {
-  [DetailsEnum.FUEL]: 'Заправить',
-  [DetailsEnum.SERVICE]: 'Техобслуживание',
-  [DetailsEnum.FINE]: 'Штрафы',
-  [DetailsEnum.PARKING]: 'Паркинг',
-  [DetailsEnum.GAS_STATION]: 'АЗС',
-};
-
-export const icons = {
-  [DetailsEnum.FUEL]: <GasStationIcon stroke={COLORS.backgroundLightGray} />,
-  [DetailsEnum.SERVICE]: <MaintenanceIcon stroke={COLORS.backgroundLightGray} />,
-  [DetailsEnum.FINE]: <CCTVIcon fill={COLORS.backgroundBlue} />,
-  [DetailsEnum.PARKING]: <ParkingIcon fill={COLORS.backgroundGreen} />,
-  [DetailsEnum.GAS_STATION]: <GasStationFillIcon fill={COLORS.corall} />,
 };
 
 export const ServicesScreen = ({ car }: OwnProps) => {

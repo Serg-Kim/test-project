@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Car } from '../../../../types/car';
+import { type Car } from '../../../../types/car';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../utils/styleUtils';
 import { COLORS } from '../../../../constants/colors';
 import { mockedCars } from '../../../../constants/mockData';

@@ -9,22 +9,20 @@ const Tab = createBottomTabNavigator();
 
 const MockScreen = () => <></>;
 
-const screenOptions = {
+export const screenOptions = {
   headerShown: false,
 };
 
-export const RootNavigator = () => {
-  return (
-    <Tab.Navigator
-      initialRouteName={RootNavigatorScreens.MAIN}
-      screenOptions={screenOptions}
-      tabBar={(tabBarProps) => <BottomTabBar tabBarProps={tabBarProps} />}
-    >
-      <Tab.Screen name={RootNavigatorScreens.MAIN} component={MainNavigator} />
-      <Tab.Screen name={RootNavigatorScreens.AUTO} component={AutoScreen} />
-      <Tab.Screen name={RootNavigatorScreens.SERVICES} component={MockScreen} />
-      <Tab.Screen name={RootNavigatorScreens.TRAVELS} component={MockScreen} />
-      <Tab.Screen name={RootNavigatorScreens.MARKET} component={MockScreen} />
-    </Tab.Navigator>
-  );
-};
+export const RootNavigator = () => (
+  <Tab.Navigator
+    initialRouteName={RootNavigatorScreens.MAIN}
+    screenOptions={screenOptions}
+    tabBar={(tabBarProps) => <BottomTabBar tabBarProps={tabBarProps} />}
+  >
+    <Tab.Screen name={RootNavigatorScreens.MAIN} component={MainNavigator} />
+    <Tab.Screen name={RootNavigatorScreens.AUTO} component={AutoScreen} />
+    <Tab.Screen name={RootNavigatorScreens.SERVICES} component={MockScreen} />
+    <Tab.Screen name={RootNavigatorScreens.TRAVELS} component={MockScreen} />
+    <Tab.Screen name={RootNavigatorScreens.MARKET} component={MockScreen} />
+  </Tab.Navigator>
+);

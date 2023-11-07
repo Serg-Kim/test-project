@@ -2,9 +2,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/core';
 import { useRoute } from '@react-navigation/native';
-import { DetailsScreenRouteProp } from '../../../../navigation/types';
+import { type DetailsScreenRouteProp } from '../../../../navigation/types';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../utils/styleUtils';
-import { titles } from '../../../services/screens/Services/ServicesScreen';
+import { titles } from '../../../../constants/common';
 import { COLORS } from '../../../../constants/colors';
 
 export const DetailsScreen = () => {
